@@ -19,6 +19,7 @@ Listado.prototype.calificarRestaurant = function(id, calificacion) {
 // REFACTOR función buscarRestaurante() --> Dado un id, busca el objeto del listado que tiene ese id
 Listado.prototype.buscarRestaurante = (id) =>{
     const restaurantSeleccionado = this.restaurantes.find(restaurant => restaurant.id == id);
+    debugger
     if (restaurantSeleccionado.length > 0){
         return restaurantSeleccionado[0];
     }
