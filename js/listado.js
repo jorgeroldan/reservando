@@ -17,9 +17,9 @@ Listado.prototype.calificarRestaurant = function(id, calificacion) {
 }
 
 // REFACTOR función buscarRestaurante() --> Dado un id, busca el objeto del listado que tiene ese id
-Listado.prototype.buscarRestaurante = (id) =>{
-    const restaurantSeleccionado = this.restaurantes.find(restaurant => restaurant.id == id);
-    debugger
+Listado.prototype.buscarRestaurante = function(id) {
+    const restaurantSeleccionado = this.restaurantes.filter(restaurant => restaurant.id == id);
+
     if (restaurantSeleccionado.length > 0){
         return restaurantSeleccionado[0];
     }
@@ -40,8 +40,9 @@ Listado.prototype.obtenerCiudades = function() {
 
 // REFACTOR obtenerRubros() --> Obtiene todos los rubros de los restaurantes sin repetidos. Su funcionamiento es similar a obtC()
 Listado.prototype.obtenerRubros = function() {
-    const rubros =  this.restaurantes.map((restaurant)=> restaurant.rubro
-    );
+    const rubros =  this.restaurantes.map(function(restaurant){
+        return restaurant.rubro;
+    });
 
     // Retornamos un arreglo con elementos unicos y ordenados
     return this.eliminarRepetidos(rubros).sort();
@@ -52,14 +53,16 @@ Listado.prototype.obtenerRubros = function() {
 //convertir en uno solo
 Listado.prototype.obtenerHorarios = function() {
     //En este array se van a cargar los arrays de horarios, que luego vamos convertir en un solo array
-    const arregloHorarios = this.restaurantes.map((restaurant)=> restaurant.horarios
-    );
+    const arregloHorarios = this.restaurantes.map(function(restaurant){
+        return restaurant.horarios;
+    });
 
     //En este arreglo vamos a poner todos los horarios, uno por uno
     const horarios = [];
-    arregloHorarios.forEach((elem)=> {
-        elem.forEach((hor)=> horarios.push(hor)
-        );
+    arregloHorarios.forEach(function(elem) {
+        elem.forEach(function(hor) {
+            horarios.push(hor)
+        });
     });
 
     // Retornamos un arreglo con elementos unicos y ordenados
